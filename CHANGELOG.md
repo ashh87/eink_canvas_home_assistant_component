@@ -11,6 +11,7 @@ This project adheres to **[Semantic Versioning](https://semver.org/)**.
 - **Changing the host no longer creates a second device.** The device and entity unique IDs are now keyed on the config entry instead of the host. Existing devices and entities are migrated in place on startup, so entity IDs, history and automations are kept.
 - Devices left behind by an earlier host change can now be deleted from the device page (previously "Config entry does not support device removal").
 - BLE wake: the connect timeout is raised from 6 s to 20 s. Through a Bluetooth proxy with a weak signal, 6 s cut connects short.
+- The "Wake (Bluetooth)" button is now created even when no Bluetooth proxy is connected yet at startup; previously it stayed unavailable until the integration was reloaded.
 - BLE wake: wait 1 s after the wake pulse before disconnecting, so the writes without response are not dropped by a proxy that disconnects at once.
 
 ## [1.7.0] - 2026-07-29

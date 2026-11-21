@@ -1195,12 +1195,9 @@ def _async_migrate_host_ids(hass: HomeAssistant, entry: ConfigEntry, host: str) 
     in the UI (see async_remove_config_entry_device).
     """
     device_registry = dr.async_get(hass)
-    old_device = device_registry.async_get_device(identifiers={(DOMAIN, host)})
-    if (
-        old_device is not None
-        and entry.entry_id in old_device.config_entries
-        and device_registry.async_get_device(identifiers={(DOMAIN, entry.entry_id)}) is None
-    ):
+    devices = dr.async_entries_for_config_entry(device_registry, entry.entry_id)
+    old_device = next((d for d in devices if (DOMAIN, host) in d.identifiers), None)
+    if old_device is not None and not any((DOMAIN, entry.entry_id) in d.identifiers for d in devices):
         device_registry.async_update_device(
             old_device.id, new_identifiers={(DOMAIN, entry.entry_id)}
         )
