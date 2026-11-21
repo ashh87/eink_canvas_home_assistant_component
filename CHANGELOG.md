@@ -12,6 +12,7 @@ This project adheres to **[Semantic Versioning](https://semver.org/)**.
 - Devices left behind by an earlier host change can now be deleted from the device page (previously "Config entry does not support device removal").
 - BLE wake: the connect timeout is raised from 6 s to 20 s. Through a Bluetooth proxy with a weak signal, 6 s cut connects short.
 - The "Wake (Bluetooth)" button is now created even when no Bluetooth proxy is connected yet at startup; previously it stayed unavailable until the integration was reloaded.
+- BLE wake: after a wake pulse is delivered, automatic wakes hold off for 45 s while the device brings Wi-Fi up. Previously the refresh after pressing "Wake (Bluetooth)" sent a second, unneeded wake.
 - BLE wake: wait 1 s after the wake pulse before disconnecting, so the writes without response are not dropped by a proxy that disconnects at once.
 
 ## [1.7.0] - 2026-07-29
