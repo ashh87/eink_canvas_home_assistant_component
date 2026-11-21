@@ -38,6 +38,7 @@ from .const import (
     ENDPOINT_PLAYLIST,
     ENDPOINT_PLAYLIST_LIST,
     ENDPOINT_STATUS,
+    BLE_WAKE_CONNECT_TIMEOUT_SECONDS,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -338,7 +339,7 @@ class EinkCanvasApiClient:
                 self._hass,
                 self._mac_address,
                 log_prefix=log_prefix,
-                connect_timeout=6,
+                connect_timeout=BLE_WAKE_CONNECT_TIMEOUT_SECONDS,
                 max_attempts=2,
                 disconnect_timeout=5,
             )
