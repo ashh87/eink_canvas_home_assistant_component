@@ -11,7 +11,8 @@ This project adheres to **[Semantic Versioning](https://semver.org/)**.
 - **Changing the host no longer creates a second device.** The device and entity unique IDs are now keyed on the config entry instead of the host. Existing devices and entities are migrated in place on startup, so entity IDs, history and automations are kept.
 - Devices left behind by an earlier host change can now be deleted from the device page (previously "Config entry does not support device removal").
 - BLE wake: the connect timeout is raised from 6 s to 20 s. Through a Bluetooth proxy with a weak signal, 6 s cut connects short.
-- The "Wake (Bluetooth)" button is now created even when no Bluetooth proxy is connected yet at startup; previously it stayed unavailable until the integration was reloaded.
+- The "Wake (Bluetooth)" button is now created even when no Bluetooth proxy is connected yet at startup; previously it stayed unavailable until the integration was reloaded. It is still left out when Home Assistant's Bluetooth integration is not set up.
+- BLE wake no longer raises an error when Home Assistant's Bluetooth integration is not set up (for example with BLE auto-wake turned on); it is skipped instead.
 - BLE wake: after a wake pulse is delivered, automatic wakes hold off for 45 s while the device brings Wi-Fi up. Previously the refresh after pressing "Wake (Bluetooth)" sent a second, unneeded wake.
 - BLE wake: wait 1 s after the wake pulse before disconnecting, so the writes without response are not dropped by a proxy that disconnects at once.
 
